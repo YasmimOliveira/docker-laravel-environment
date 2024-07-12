@@ -1,0 +1,71 @@
+version: '3.1'
+
+services:
+  php:
+    container_name: setup-php
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    tty: true
+    volumes:
+      - ./hemosc-app:/var/www
+      - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - setup-network
+
+  nginx:
+    container_name: setup-nginx
+    build:
+      context: ./docker/nginx
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    tty: true
+    ports:
+      - '8080:80'
+      - '443:443'
+    volumes:
+      - ./hemosc-app:/var/www
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - setup-network
+
+  ## BANCO DE DADOS
+
+  mariadb:
+    container_name: setup-mariadb
+    image: mariadb:11.2
+    restart: unless-stopped
+    tty: true
+    volumes:
+      - data-db:/var/lib/mysql/
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d
+    networks:
+      - setup-network
+    ports:
+      - '3306:3306'
+    environment:
+        MARIADB_DATABASE: hemosc_db
+        MARIADB_USER: dev
+        MARIADB_PASSWORD: '123456'
+        MARIADB_ROOT_PASSWORD: '123456'
+    privileged: true
+
+  adminer:
+    container_name: setup_adminer
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - 8888:8080
+    networks:
+      - setup-network
+    depends_on:
+      - mariadb
+
+networks:
+  setup-network:
+    driver: bridge
+
+volumes:
+  data-db:
+    driver: local
