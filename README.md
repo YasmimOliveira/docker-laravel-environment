@@ -7,6 +7,7 @@ Images used for the containers:
 * Nginx as a reverse proxy
 * MariaDB version 11.2 as the database
 * Adminer as the MySQL client
+* Xdebug
 
 ### Steps to Run the Application:
 
@@ -61,3 +62,9 @@ Images used for the containers:
 - [Medium Article](https://medium.com/@marcosdiasdev/criando-um-ambiente-docker-para-desenvolvimento-laravel-com-php-nginx-e-mysql-847490acc50d)
 - [Full Cycle Tutorial](https://fullcycle.com.br/docker-e-docker-composer-na-pratica-criando-ambiente-laravel/)
 - [DigitalOcean Guide](https://www.digitalocean.com/community/tutorials/how-to-containerize-a-laravel-application-for-development-with-docker-compose-on-ubuntu-18-04-pt)
+
+- [Youtube Tutorial XDEBUG](https://www.youtube.com/watch?v=kbq3FJOYmQ0)
+- [dev.to - XBEGUG in vscode with docker](https://dev.to/jackmiras/xdebug-in-vscode-with-docker-379l)
+
+### Notes:
+- XEBUG: [check the notion file to make it listen in vscode](https://www.notion.so/Adicionando-XDEBUG-ao-container-php-docker-ca921705eb6a41cfba283d28981edd31)
