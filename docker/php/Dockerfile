@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg62-turbo-dev \
     libfreetype6-dev \
+    libwebp-dev \
     locales \
     zip \
     jpegoptim optipng pngquant gifsicle \
@@ -21,7 +22,7 @@ RUN apt-get update && apt-get install -y \
     libonig-dev
 
 RUN docker-php-ext-install zip pdo_mysql mbstring exif
-RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/
+RUN docker-php-ext-configure gd --with-webp --with-freetype=/usr/include/ --with-jpeg=/usr/include/
 RUN docker-php-ext-install gd
 
 # Install XDebug
