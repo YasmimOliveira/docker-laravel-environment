@@ -6,6 +6,8 @@ services:
     build:
       context: ./docker/php
       dockerfile: Dockerfile
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     restart: unless-stopped
     tty: true
     volumes:

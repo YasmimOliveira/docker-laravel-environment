@@ -24,6 +24,10 @@ RUN docker-php-ext-install zip pdo_mysql mbstring exif
 RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/
 RUN docker-php-ext-install gd
 
+# Install XDebug
+RUN pecl install xdebug-3.3.2
+RUN docker-php-ext-enable xdebug 
+
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 RUN groupadd -g 1000 laravel
