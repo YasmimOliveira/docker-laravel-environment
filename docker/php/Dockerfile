@@ -27,7 +27,10 @@ RUN docker-php-ext-install gd
 
 # Install XDebug
 RUN pecl install xdebug-3.3.2
-RUN docker-php-ext-enable xdebug 
+RUN docker-php-ext-enable xdebug
+
+# Install node 
+RUN apt-get install -y nodejs && apt-get install -y npm
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
